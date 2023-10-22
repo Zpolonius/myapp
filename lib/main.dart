@@ -35,11 +35,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _imageId = 1;
 
   void _incrementCounter() {
     setState(() {
       
       _counter++;
+      _imageId++;
     });
   }
 
@@ -66,15 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-             Card(shape: 
-              RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-             ),
-              child: SizedBox(width: 250,
-              height: 250,
-                child: Image.network("https://avatars.githubusercontent.com/u/97382890?v=4", fit: BoxFit.scaleDown,)))
-          ],
-        ),
+            
+        ],),
       ),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(12)),

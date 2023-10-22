@@ -77,6 +77,22 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-    );
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children:<Widget>[
+            
+            IconButton(onPressed: () {}, 
+          icon: const Icon(Icons.menu)),
+          IconButton(icon: const Icon(Icons.favorite), onPressed: () {},
+          ),
+          
+          FloatingActionButton(onPressed: _incrementCounter,
+          child: const Icon(Icons.add),
+          
+          )])
+        ),
+      );
+    
   }
 }

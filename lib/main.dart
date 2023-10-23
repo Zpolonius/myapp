@@ -2,6 +2,8 @@ import 'src/Models/image_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
+import 'dart:convert';
+
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'My first app!'),
     );
   }
 }
@@ -40,10 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   
 
-  void _fetchImage(){
-    setState((){
+  void _fetchImage() {
+    setState(() async {
     _counter++; 
-    get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
+    var response = await get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
+    var imageModel = ImageModel.fromJson(json.decode(response.body));
   });
   }
   

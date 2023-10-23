@@ -1,6 +1,7 @@
 import 'src/Models/image_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' show get;
 
 void main() {
   runApp(const MyApp());
@@ -37,15 +38,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int _imageId = 0;
+  
 
-  void _incrementCounter() {
-    setState(() {
-      
-      _counter++;
-      _imageId++;
-    });
+  void _fetchImage(){
+    setState((){
+    _counter++; 
+    get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
+  });
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(12)),
-        onPressed: _incrementCounter,
+        onPressed: _fetchImage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
@@ -89,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(icon: const Icon(Icons.favorite), onPressed: () {},
           ),
           
-          FloatingActionButton(onPressed: _incrementCounter,
+          FloatingActionButton(onPressed: _fetchImage,
           child: const Icon(Icons.add),
           
           )])

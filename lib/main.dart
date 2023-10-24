@@ -47,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _fetchImage() async {
     
     _counter++; 
-    var response = await get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
-    var imageModel = ImageModel.fromJson(json.decode(response.body));
+    final response = await get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
+    final imageModel = ImageModel.fromJson(json.decode(response.body));
     setState(()  {images.add(imageModel);
   });
   }

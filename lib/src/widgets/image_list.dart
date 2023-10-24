@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 
 class ImageList extends StatelessWidget
 {
-  List<ImageModel> images;
+ final List<ImageModel> images;
 
    ImageList(this.images);
    
-     @override
-     Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    Widget build(context){
+        return ListView.builder(itemCount: images.length,
+        itemBuilder: (context, int index)
+        {
+          
+        },
+        );
+    }
      }
-}

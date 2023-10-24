@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         
         title: const Text('Show me some images!'),
       ),
-      body: ImageList(),
+      body: ImageList(images),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

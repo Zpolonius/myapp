@@ -40,6 +40,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  List<ImageModel> images = [];
   
 
   void _fetchImage() {
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _counter++; 
     var response = await get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
     var imageModel = ImageModel.fromJson(json.decode(response.body));
+    images.add(imageModel);
   });
   }
   

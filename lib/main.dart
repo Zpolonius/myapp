@@ -1,4 +1,5 @@
 import 'src/Models/image_model.dart';
+import 'src/widgets/image_list.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
@@ -43,12 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
   List<ImageModel> images = [];
   
 
-  void _fetchImage() {
-    setState(() async {
+  void _fetchImage() async {
+    
     _counter++; 
     var response = await get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
     var imageModel = ImageModel.fromJson(json.decode(response.body));
-    images.add(imageModel);
+    setState(()  {images.add(imageModel);
   });
   }
   
@@ -61,30 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
         
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         
-        title: Text(widget.title),
+        title: const Text('Show me some images!'),
       ),
-      body: Center(
-      
-        child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            
-        ],),
-      ),
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(12)),
-        onPressed: _fetchImage,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      body: ImageList(),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

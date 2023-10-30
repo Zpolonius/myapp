@@ -47,14 +47,15 @@ class _MyHomePageState extends State<MyHomePage> {
   
 
   void fetchImage() async {
-    
-    _counter++; 
-    final response = await get('https://jsonplaceholder.typicode.com/photos/$_counter');
-    final imageModel = ImageModel.fromJson(json.decode(response.body));
-    setState(()  {images.add(imageModel);
-    
+  _counter++;
+  final response = await get(Uri.parse('https://jsonplaceholder.typicode.com/photos/$_counter'));
+  final imageModel = ImageModel.fromJson(json.decode(response.body));
+
+  // Schedule a state update to add the new image model to the list.
+  setState(() {
+    images.add(imageModel);
   });
-  }
+}
   
 
   @override
@@ -67,7 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
         
         title: const Text('Show me some images!'),
       ),
-      body: ImageList(images.),
+      body: ImageList(images.map((image) => image.url).toList()),
+
+
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

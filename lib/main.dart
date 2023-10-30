@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'src/Models/image_model.dart';
 import 'src/widgets/image_list.dart';
 
@@ -44,12 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
   List<ImageModel> images = [];
   
 
-  void _fetchImage() async {
+  void fetchImage() async {
     
     _counter++; 
-    final response = await get('https://jsonplaceholder.typicode.com/photos/$_counter' as Uri);
+    final response = await get(Uri.https('https://jsonplaceholder.typicode.com/photos/$_counter'));
     final imageModel = ImageModel.fromJson(json.decode(response.body));
     setState(()  {images.add(imageModel);
+    
   });
   }
   
@@ -64,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         
         title: const Text('Show me some images!'),
       ),
-      body: ImageList(images),
+      body: ImageList(images.url),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(icon: const Icon(Icons.favorite), onPressed: () {},
           ),
           
-          FloatingActionButton(onPressed: _fetchImage,
+          FloatingActionButton(onPressed: fetchImage,
           child: const Icon(Icons.add),
           
           )])

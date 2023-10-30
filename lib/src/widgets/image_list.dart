@@ -1,5 +1,4 @@
 //Local import
-import 'dart:html';
 
 import '../Models/image_model.dart';
 //package import
@@ -9,7 +8,7 @@ class ImageList extends StatelessWidget
 {
  final List<ImageModel> images;
 
-    ImageList(this.images, {super.key});
+    const ImageList(this.images, {super.key});
    
     @override
       Widget build(context){

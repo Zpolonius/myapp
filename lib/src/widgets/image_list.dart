@@ -8,14 +8,15 @@ class ImageList extends StatelessWidget
 {
  final List<ImageModel> images;
 
-    const ImageList(this.images, {super.key});
+    const ImageList(this.images, 
+    );
    
     @override
       Widget build(context){
         return ListView.builder(itemCount: images.length,
         itemBuilder: (context, int index)
         {
-          return Text(images[index].id as String);
+          return Text('$images[index]');
         },
         );
     }

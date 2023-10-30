@@ -4,7 +4,7 @@ import 'src/Models/image_model.dart';
 import 'src/widgets/image_list.dart';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' show get;
+import 'package:http/http.dart';
 import 'dart:convert';
 
 
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void fetchImage() async {
     
     _counter++; 
-    final response = await get(Uri.https('https://jsonplaceholder.typicode.com/photos/$_counter'));
+    final response = await get('https://jsonplaceholder.typicode.com/photos/$_counter');
     final imageModel = ImageModel.fromJson(json.decode(response.body));
     setState(()  {images.add(imageModel);
     
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         
         title: const Text('Show me some images!'),
       ),
-      body: ImageList(images.url),
+      body: ImageList(images.),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
